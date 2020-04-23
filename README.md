@@ -1,4 +1,7 @@
 # passwall-debian
+
+![GitHub Releases](https://img.shields.io/github/downloads/pass-wall/passwall-debian/latest/total)
+
 # Building Debian Package
 
 Install the dependencies 
