@@ -1,0 +1,30 @@
+name: CI
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build deb package.
+      env:
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          PASSPHRASE: ${{ secrets.PASSPHRASE }}
+      run: |
+        sudo apt install git npm -y
+        wget https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz
+        sudo tar -C /usr/local -xzf go1.14.2.linux-amd64.tar.gz
+        export PATH=$PATH:/usr/local/go/bin
+        sudo chmod +x make_deb.sh
+        ./make_deb.sh
+    - name: Upload deb package to release
+      uses: svenstaro/upload-release-action@v1-release
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: /tmp/passwall-build/passwall-debian.deb
+        asset_name: passwall-${{ github.ref }}.deb
+        tag: ${{ github.ref }}
+        overwrite: true

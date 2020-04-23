@@ -1,0 +1,31 @@
+ln -s /usr/share/applications/passwall.desktop /etc/xdg/autostart/passwall.desktop
+cp /usr/bin/passwall/server/store/config-sample.yml /usr/bin/passwall/server/store/config.yml
+
+echo """
+[Unit]
+Description=Passwall Server
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+Group=www-data
+ExecStart=/usr/bin/passwall/server/passwall-server
+Environment=\"GIN_MODE=release\"
+WorkingDirectory=/usr/bin/passwall/server/
+[Install]
+WantedBy=multi-user.target
+    """ > /etc/systemd/system/passwall-server.service
+
+systemctl daemon-reload
+systemctl enable passwall-server
+systemctl restart passwall-server
+
+
+echo "Your settings are stored in /usr/bin/passwall/server/store/config.yml"
+
+printf "You can login with: \nUsername: passwall \nPassword: password\n"
+
+printf "Web address: http://localhost:3625 \n"

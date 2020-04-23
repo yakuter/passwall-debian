@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=PassWall
+Comment=PassWall is a password management tool
+Exec=bash -c "/usr/bin/passwall/client/PassWall"
+Icon=passwall
+Terminal=false
+StartupNotify=false
+Categories=Application;
+
