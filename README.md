@@ -1,6 +1,6 @@
 # passwall-debian
 
-![GitHub Releases](https://img.shields.io/github/downloads/pass-wall/passwall-debian/latest/total)
+![GitHub All Releases](https://img.shields.io/github/downloads/pass-wall/passwall-debian/total)
 
 # Building Debian Package
 
