@@ -5,7 +5,6 @@ if ! getent passwd passwall >/dev/null; then
             passwall
 fi
 
-ln -s /usr/share/applications/passwall.desktop /etc/xdg/autostart/passwall.desktop
 cp /usr/share/passwall/store/config-sample.yml /usr/share/passwall/store/config.yml
 mkdir -p /etc/passwall
 ln -s /usr/share/passwall/store/config.yml /etc/passwall/config.yml
