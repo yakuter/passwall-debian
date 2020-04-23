@@ -6,8 +6,9 @@ SERVER_PATH=$TMP_DIR/passwall-server
 DESKTOP_PATH=$TMP_DIR/passwall-desktop
 WEB_PATH=$TMP_DIR/passwall-web
 DEBIAN_PATH=$TMP_DIR/passwall-debian
+PASSWALL_OPT_PATH=$DEBIAN_PATH/usr/share/passwall
 SERVER_BIN_PATH=$DEBIAN_PATH/usr/bin/passwall/server
-WEB_BIN_PATH=$SERVER_BIN_PATH/public
+WEB_BIN_PATH=$PASSWALL_OPT_PATH/public
 DESKTOP_BIN_PATH=$DEBIAN_PATH/usr/bin/passwall/client
 APPLICATION_PATH=$DEBIAN_PATH/usr/share/applications
 ICON_PATH=$DEBIAN_PATH/usr/share/pixmaps
@@ -16,6 +17,7 @@ rm -rf $TMP_DIR
 
 mkdir $TMP_DIR
 mkdir $DEBIAN_PATH
+mkdir -p $PASSWALL_OPT_PATH
 mkdir -p $SERVER_BIN_PATH
 mkdir -p $WEB_BIN_PATH
 mkdir -p $DESKTOP_BIN_PATH
@@ -36,7 +38,7 @@ $GIT clone https://github.com/pass-wall/passwall-web $WEB_PATH
 echo "Building passwall-server..."
 cd $SERVER_PATH && CGO_ENABLED=1 GOOS=linux $GO build -a --ldflags="-s" -o passwall-server
 cp $SERVER_PATH/passwall-server $SERVER_BIN_PATH/passwall-server
-cp -r $SERVER_PATH/store $SERVER_BIN_PATH/store
+cp -r $SERVER_PATH/store $PASSWALL_OPT_PATH/store
 echo "Building passwall-server completed successfully."
 
 echo "Building passwall-web..."
