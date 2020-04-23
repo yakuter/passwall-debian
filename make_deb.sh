@@ -24,7 +24,7 @@ mkdir -p $ICON_PATH
 
 mkdir -p $DEBIAN_PATH/DEBIAN
 cp -r ./debian/control $DEBIAN_PATH/DEBIAN/control
-echo "Version: 1.$1" >> $DEBIAN_PATH/DEBIAN/control
+echo "Version: 000.$1" >> $DEBIAN_PATH/DEBIAN/control
 cp -r ./debian/postinst $DEBIAN_PATH/DEBIAN/postinst
 cp ./debian/passwall.desktop $APPLICATION_PATH/passwall.desktop
 cp ./debian/passwall.png $ICON_PATH/passwall.png
