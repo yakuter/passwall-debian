@@ -27,7 +27,7 @@ Run the shell script
 
 ```
 chmod +x make_deb.sh
-./make_deb.sh
+./make_deb.sh <version_name>
 ```
 
 Install the deb package
