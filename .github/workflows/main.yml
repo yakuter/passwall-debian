@@ -13,6 +13,7 @@ jobs:
       env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
           PASSPHRASE: ${{ secrets.PASSPHRASE }}
+          GITHUB_REF: ${{ github.ref }}
       run: |
         sudo apt install git npm -y
         wget https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz
@@ -25,6 +26,6 @@ jobs:
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         file: /tmp/passwall-build/passwall-debian.deb
-        asset_name: passwall-${{ github.ref }}.deb
+        asset_name: passwall-$(echo $GITHUB_REF | cut -d / -f 3).deb
         tag: ${{ github.ref }}
         overwrite: true

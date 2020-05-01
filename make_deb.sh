@@ -27,7 +27,7 @@ $GIT clone https://github.com/pass-wall/passwall-server $SERVER_PATH
 $GIT clone https://github.com/pass-wall/passwall-web $WEB_PATH
 
 echo "Building passwall-server..."
-cd $SERVER_PATH && CGO_ENABLED=1 GOOS=linux $GO build -a --ldflags="-s" -o passwall-server
+cd $SERVER_PATH && CGO_ENABLED=1 GOOS=linux $GO build -a --ldflags="-s" ./cmd/passwall-server
 cp $SERVER_PATH/passwall-server $SERVER_BIN_PATH/passwall-server
 cp -r $SERVER_PATH/store $PASSWALL_OPT_PATH/store
 echo "Building passwall-server completed successfully."
